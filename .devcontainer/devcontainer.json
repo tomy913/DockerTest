@@ -1,0 +1,14 @@
+{
+  "name": "Claude Code Agent",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && mkdir -p ~/.claude && echo '{\"defaultMode\":\"bypassPermissions\"}' > ~/.claude/settings.json",
+  "containerEnv": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "ANTHROPIC_MODEL": "claude-opus-4-6"
+  }
+}
