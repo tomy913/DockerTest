@@ -1,9 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { easings, stagger as staggerTokens } from '../designTokens';
-
-gsap.registerPlugin(ScrollTrigger);
+import { stagger as staggerTokens } from '../designTokens';
 
 export default function Hero() {
   const containerRef = useRef(null);

@@ -71,7 +71,7 @@ function DotGridLaser() {
         yoyo: true,
         ease: easings.morph,
       });
-    });
+    }, laserRef);
     return () => ctx.revert();
   }, []);
 
@@ -235,7 +235,7 @@ export default function Protocol() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-[300vh]">
+    <section id="governance" ref={containerRef} className="relative min-h-[300vh]">
       <div className="relative w-full h-screen overflow-hidden">
         {cards.map((card, i) => (
           <div

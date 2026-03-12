@@ -87,7 +87,7 @@ export default function Pricing() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-ivory py-24 px-8 md:px-16">
+    <section id="access" ref={sectionRef} className="bg-ivory py-24 px-8 md:px-16">
       {/* Header */}
       <div className="text-center mb-16">
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate mb-4">

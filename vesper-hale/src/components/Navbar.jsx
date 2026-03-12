@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
-import { colors } from '../designTokens';
 
 const navLinks = ['Intelligence', 'Governance', 'Access'];
 

@@ -60,11 +60,7 @@ function DiagnosticShuffler() {
   };
 
   return (
-<<<<<<< HEAD
     <div className="relative flex-1 min-h-[16rem]">
-=======
-    <div className="relative min-h-[16rem]">
->>>>>>> 5d96e14 (edited claud.md)
       {labels.map((label, i) => (
         <div
           key={label}
@@ -93,17 +89,18 @@ function DiagnosticShuffler() {
 }
 
 /* ─── Card 2: Telemetry Typewriter ─── */
+
+const TYPEWRITER_MESSAGES = [
+  '\u25b8 Scenario: Fed +50bp \u2014 portfolio impact: -2.3%\u2026',
+  '\u25b8 Hedge recommendation: rotate 12% into short-duration\u2026',
+  '\u25b8 Risk narrative updated for Q3 review\u2026',
+];
+
 function TelemetryTypewriter() {
   const [displayText, setDisplayText] = useState('');
   const [msgIndex, setMsgIndex] = useState(0);
   const intervalRef = useRef(null);
   const timeoutRef = useRef(null);
-
-  const messages = [
-    '\u25b8 Scenario: Fed +50bp \u2014 portfolio impact: -2.3%\u2026',
-    '\u25b8 Hedge recommendation: rotate 12% into short-duration\u2026',
-    '\u25b8 Risk narrative updated for Q3 review\u2026',
-  ];
 
   const typeMessage = useCallback((msg, onDone) => {
     let charIdx = 0;
@@ -122,8 +119,8 @@ function TelemetryTypewriter() {
 
   useEffect(() => {
     const startTyping = (idx) => {
-      typeMessage(messages[idx], () => {
-        const next = (idx + 1) % messages.length;
+      typeMessage(TYPEWRITER_MESSAGES[idx], () => {
+        const next = (idx + 1) % TYPEWRITER_MESSAGES.length;
         setMsgIndex(next);
         startTyping(next);
       });
@@ -134,15 +131,10 @@ function TelemetryTypewriter() {
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-<<<<<<< HEAD
     <div className="bg-obsidian rounded-2xl p-6 text-champagne font-mono text-sm flex-1 min-h-[16rem] flex flex-col">
-=======
-    <div className="bg-obsidian rounded-2xl p-6 text-champagne font-mono text-sm min-h-[16rem] flex flex-col">
->>>>>>> 5d96e14 (edited claud.md)
       <div className="flex items-center gap-2 mb-4">
         <div className="w-2 h-2 rounded-full bg-champagne animate-pulse" />
         <span className="text-champagne/70 text-xs uppercase tracking-widest">
@@ -254,11 +246,7 @@ function CursorProtocolScheduler() {
   return (
     <div
       ref={containerRef}
-<<<<<<< HEAD
       className="relative flex-1 min-h-[16rem] flex flex-col items-center justify-center"
-=======
-      className="relative min-h-[16rem] flex flex-col items-center justify-center"
->>>>>>> 5d96e14 (edited claud.md)
     >
       <svg
         ref={cursorRef}
@@ -306,6 +294,7 @@ function CursorProtocolScheduler() {
 
       <button
         ref={saveRef}
+        type="button"
         className="mt-4 px-6 py-2 rounded-xl border border-black/10 text-sm font-heading text-slate transition-colors"
       >
         Save
@@ -314,7 +303,6 @@ function CursorProtocolScheduler() {
   );
 }
 
-<<<<<<< HEAD
 /* ─── Component map ─── */
 const COMPONENTS = [DiagnosticShuffler, TelemetryTypewriter, CursorProtocolScheduler];
 
@@ -329,71 +317,20 @@ export default function Features() {
   const indicatorRef = useRef(null);
 
   const ActiveComponent = COMPONENTS[activeIndex];
-=======
-/* ─── Features Data ─── */
-const FEATURES = [
-  {
-    id: 'diagnostics',
-    number: '01',
-    title: 'Real-time Portfolio Synthesis',
-    summary:
-      'Unified views across custodians, asset classes, and jurisdictions — reconciled in seconds.',
-    Component: DiagnosticShuffler,
-  },
-  {
-    id: 'telemetry',
-    number: '02',
-    title: 'Predictive Risk Narratives',
-    summary:
-      'AI-generated scenario analysis, delivered as prose your investment committee can act on.',
-    Component: TelemetryTypewriter,
-  },
-  {
-    id: 'governance',
-    number: '03',
-    title: 'Multi-Generational Governance',
-    summary:
-      'Automated scheduling for family votes, trustee reviews, and succession planning milestones.',
-    Component: CursorProtocolScheduler,
-  },
-];
-
-/* ─── Features Section ─── */
-export default function Features() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const prevIndexRef = useRef(0);
-  const sectionRef = useRef(null);
-  const tabRailRef = useRef(null);
-  const contentRef = useRef(null);
-  const indicatorRef = useRef(null);
-  const tabRefs = useRef([]);
-
-  const ActiveComponent = FEATURES[activeIndex].Component;
->>>>>>> 5d96e14 (edited claud.md)
 
   // Scroll-trigger entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-<<<<<<< HEAD
       const tabs = gsap.utils.toArray('[data-feature-tab]');
       gsap.fromTo(
         tabs,
-=======
-      gsap.fromTo(
-        tabRailRef.current,
->>>>>>> 5d96e14 (edited claud.md)
         { x: -40, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-<<<<<<< HEAD
           duration: 0.8,
           ease: easings.entrance,
           stagger: staggerTokens.cards,
-=======
-          duration: 1,
-          ease: easings.entrance,
->>>>>>> 5d96e14 (edited claud.md)
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 80%',
@@ -401,11 +338,7 @@ export default function Features() {
         }
       );
       gsap.fromTo(
-<<<<<<< HEAD
         panelRef.current,
-=======
-        contentRef.current,
->>>>>>> 5d96e14 (edited claud.md)
         { y: 40, opacity: 0 },
         {
           y: 0,
@@ -427,7 +360,6 @@ export default function Features() {
   // Tab-switch content transition
   useEffect(() => {
     if (!contentRef.current) return;
-<<<<<<< HEAD
 
     const direction = activeIndex > prevIndexRef.current ? 1 : -1;
     prevIndexRef.current = activeIndex;
@@ -440,20 +372,10 @@ export default function Features() {
     );
 
     return () => tl.kill();
-=======
-    const direction = activeIndex > prevIndexRef.current ? 1 : -1;
-    gsap.fromTo(
-      contentRef.current,
-      { opacity: 0, y: 30 * direction },
-      { opacity: 1, y: 0, duration: 0.5, ease: easings.morph }
-    );
-    prevIndexRef.current = activeIndex;
->>>>>>> 5d96e14 (edited claud.md)
   }, [activeIndex]);
 
   // Indicator animation
   useEffect(() => {
-<<<<<<< HEAD
     const activeTab = tabRefs.current[activeIndex];
     if (!activeTab || !indicatorRef.current) return;
 
@@ -465,37 +387,15 @@ export default function Features() {
         height: activeTab.offsetHeight,
         width: 4,
         x: 0,
-=======
-    if (!indicatorRef.current || !tabRefs.current[activeIndex]) return;
-
-    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-    const tab = tabRefs.current[activeIndex];
-    const rail = tabRailRef.current;
-
-    if (!rail) return;
-
-    const railRect = rail.getBoundingClientRect();
-    const tabRect = tab.getBoundingClientRect();
-
-    if (isDesktop) {
-      gsap.to(indicatorRef.current, {
-        y: tabRect.top - railRect.top,
-        height: tabRect.height,
->>>>>>> 5d96e14 (edited claud.md)
         duration: 0.4,
         ease: easings.morph,
       });
     } else {
       gsap.to(indicatorRef.current, {
-<<<<<<< HEAD
         x: activeTab.offsetLeft,
         width: activeTab.offsetWidth,
         height: 3,
         y: 0,
-=======
-        x: tabRect.left - railRect.left,
-        width: tabRect.width,
->>>>>>> 5d96e14 (edited claud.md)
         duration: 0.4,
         ease: easings.morph,
       });
@@ -503,8 +403,7 @@ export default function Features() {
   }, [activeIndex]);
 
   return (
-    <section ref={sectionRef} className="bg-ivory py-24 px-8 md:px-16">
-<<<<<<< HEAD
+    <section id="intelligence" ref={sectionRef} className="bg-ivory py-24 px-8 md:px-16">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Tab rail */}
@@ -564,64 +463,6 @@ export default function Features() {
                   {FEATURES[activeIndex].summary}
                 </p>
               </div>
-=======
-      <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
-        {/* Tab Rail */}
-        <div
-          ref={tabRailRef}
-          className="relative flex flex-row md:flex-col gap-3 md:w-[320px] shrink-0 overflow-x-auto md:overflow-x-visible"
-        >
-          {/* Sliding indicator */}
-          <div
-            ref={indicatorRef}
-            className="absolute md:left-0 md:w-1 md:top-0 bottom-0 left-0 h-1 md:h-0 w-0 bg-champagne rounded-full z-10"
-          />
-
-          {FEATURES.map((feature, i) => (
-            <button
-              key={feature.id}
-              ref={(el) => (tabRefs.current[i] = el)}
-              onClick={() => setActiveIndex(i)}
-              className={`relative text-left px-5 py-4 rounded-2xl transition-all shrink-0 ${
-                i === activeIndex
-                  ? 'bg-white shadow-lg border-l-0 md:border-l-[3px] border-champagne'
-                  : 'bg-white/50 hover:bg-white/80'
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-champagne font-mono text-sm font-bold">
-                  {feature.number}
-                </span>
-                <span className="font-heading text-sm font-semibold text-slate whitespace-nowrap">
-                  {feature.title}
-                </span>
-              </div>
-              {i !== activeIndex && (
-                <p className="text-slate/50 text-xs mt-1 font-heading hidden md:block">
-                  {feature.summary}
-                </p>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Content Panel */}
-        <div
-          ref={contentRef}
-          className="flex-1 bg-white rounded-[2rem] p-8 shadow-lg shadow-black/5 border border-black/5 relative overflow-hidden min-h-[28rem]"
-        >
-          <div className="flex flex-col h-full">
-            <div className="flex-1">
-              <ActiveComponent key={activeIndex} />
-            </div>
-            <div className="mt-6 pt-4 border-t border-black/5">
-              <h3 className="font-heading text-xl font-bold text-slate">
-                {FEATURES[activeIndex].title}
-              </h3>
-              <p className="text-slate/60 text-sm mt-2 font-heading">
-                {FEATURES[activeIndex].summary}
-              </p>
->>>>>>> 5d96e14 (edited claud.md)
             </div>
           </div>
         </div>
